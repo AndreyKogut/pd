@@ -2,7 +2,7 @@ import { Singletone } from './singletone';
 
 
 describe('Singletone', () => {
-	test('Should create object', () => {
+	test('Should create an object', () => {
 		const singletone = Singletone.createInstance();
 
 		expect(singletone).toBeInstanceOf(Singletone);

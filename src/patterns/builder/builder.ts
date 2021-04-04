@@ -9,13 +9,15 @@ export class Builder {
 	}
 
 	initData(value: number): Builder {
-		this.entity.prop1 = value > 3 ? 'Grater' : 'Less';
+		const entity = this.getInstance();
+		entity.prop1 = value > 3 ? 'Grater' : 'Less';
 
 		return this;
 	}
 
 	generateId(): Builder {
-		this.entity.prop2 = Math.random();
+		const entity = this.getInstance();
+		entity.prop2 = Math.random();
 
 		return this;
 	}

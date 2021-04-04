@@ -3,13 +3,13 @@ export class Singletone {
 
 	private constructor() {}
 
-	static createInstance() {
-		if (this.currentValue != null) {
-			return this.currentValue;
+	static getInstance(): Singletone {
+		if (Singletone.currentValue) {
+			return Singletone.currentValue;
 		}
 
-		this.currentValue = new Singletone();
+		Singletone.currentValue = new Singletone();
 
-		return this.currentValue;
+		return Singletone.currentValue;
 	}
 }

@@ -11,9 +11,9 @@ describe('Builder', () => {
 
 	test('Sould create builder', () => {
 		const builder = new Builder();
-		const instacne = builder.getInstance();
+		const instance = builder.getInstance();
 
-		expect(instacne).toBeInstanceOf(Entity);
+		expect(instance).toBeInstanceOf(Entity);
 	});
 
 	test('Sould update prop1', () => {

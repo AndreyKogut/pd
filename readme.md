@@ -2,3 +2,4 @@
 
 * Singletone
 * Builder
+* Decorator

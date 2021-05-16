@@ -3,3 +3,4 @@
 * Singletone
 * Builder
 * Decorator
+* Observer

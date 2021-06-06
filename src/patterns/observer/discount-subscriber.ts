@@ -9,7 +9,7 @@ export class DiscountSubscriber extends GameStoreSubscriber {
 		super();
 	}
 
-	notify(notification: DiscountNotification) {
+	handle(notification: DiscountNotification) {
 		this.listener(notification);
 	}
 }

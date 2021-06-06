@@ -17,6 +17,6 @@ export class GameStore {
 	}
 
 	discountNotify(game: string, discount: number): void {
-		this.discontSubscribers.forEach(item => item.notify({ game, discount }));
+		this.discontSubscribers.forEach(item => item.handle({ game, discount }));
 	}
 }

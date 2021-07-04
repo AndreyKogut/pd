@@ -4,3 +4,4 @@
 * Builder
 * Decorator
 * Observer
+* Visitor

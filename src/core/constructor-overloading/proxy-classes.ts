@@ -1,8 +1,13 @@
-export class ConstructorOverloading {
+export interface ConstructorOverloadingModel {
+	a: number;
+	b: number;
+}
+
+export class ConstructorOverloading implements ConstructorOverloadingModel {
 	constructor(public a: number, public b: number) {}
 }
 
-export class OneArgCO implements ConstructorOverloading {
+export class OneArgCO implements ConstructorOverloadingModel {
 	a: number;
 	b: number;
 
@@ -12,7 +17,7 @@ export class OneArgCO implements ConstructorOverloading {
 	}
 }
 
-export class CustomArgsCO implements ConstructorOverloading {
+export class CustomArgsCO implements ConstructorOverloadingModel {
 	a: number;
 	b: number;
 

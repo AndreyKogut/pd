@@ -6,7 +6,7 @@
 
 * Run `npm i -g webpack-cli` to install webpack cli.
 
-* `npx webpack-cli init` to setup webpack configuration and generate boilarplate.
+* `npm webpack-cli init` to setup webpack configuration and generate boilarplate.
 
 <img src="./assets/doc/webpack-cli-init.png" width="700" />
 

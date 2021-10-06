@@ -152,6 +152,24 @@ To prevent blocking rendering when a script is processing we can use *async/defe
 
 	It is based on AMD but with some special cases included to handle CommonJS compatibility.
 	Check [templates](https://github.com/umdjs/umd/tree/master/templates) for details.
+
+* [System.register](https://github.com/systemjs/systemjs/blob/HEAD/docs/system-register.md#format-definition)
+	For older browsers that do not support ES Modules natively and enables extra features like await, dynamic import, circular references and live bindings, import.meta.url, module types, import maps, integrity and Content Security Policy.
+
+	Module wrapper takes the following [structure](https://github.com/systemjs/systemjs/blob/HEAD/docs/system-register.md#format-definition):
+	
+	```js
+		System.register([], function (_export, _context) {
+			return {
+				setters: [],
+				execute: function () {
+
+				}
+			};
+		});
+	```
+	> Note as of SystemJS 2.0 support for named System.register(name, deps, declare) is no longer supported, as instead code optimization approaches that combine modules like with Rollup's code-splitting workflows are recommended instead.
+
 ## Now
 ES Modules was introduced in 2015 in ES6 and is also known for [import/export syntax](https://javascript.info/import-export).
 
@@ -205,3 +223,68 @@ index.html
 * Module with src loads only once.
 * Loading scripts from other domains require CORS configuration on the requested domain.
 * Use **nomodule** attribute to run some script in older browsers.
+
+## Module loaders and bundlers
+> CJS, AMD, UMD is just module formats, you still need to include everything in your html.
+To be able to have only one entry file (or several app entries if needed) we can use module loaders or module bundlers.
+Module loaders to import modules at runtime and bundlers mostly used to include them to the bundle (loading at runtime is available).
+
+Module loaders:
+* [RequireJS](https://requirejs.org/)
+	Loading AMD modules.
+* [SystemJS](https://www.npmjs.com/package/systemjs)
+	Loading AMD, CJS, UMD modules.
+* ES Modules
+	Use "script" tag with type="module" property and browser will use native loader.
+
+Module bundlers: gulp, webpack, browserify, rollup;
+> Can be used to combine multiple module formats.
+
+## Typescript
+TypeScript supports all JavaScript syntax, including the ES6 [module](https://www.typescriptlang.org/docs/handbook/modules.html) syntax. When TypeScript transpiles, the ES module code can either be kept as ES6, or transpiled to other formats, including CommonJS/Node.js, AMD/RequireJS, UMD/UmdJS, or System/SystemJS, according to the specified transpiler options in tsconfig.json
+
+## ES dynamic module: ECMAScript 2020, or ES11 dynamic module
+In 2020, the latest JavaScript spec version 11 is introducing a built-in function import to consume an ES module dynamically. The import function returns a promise, so its then method can be called to consume the module:
+
+```js
+// Use dynamic ES module with promise APIs, import from named export:
+import("./esCounterModule.js").then(({ increase, reset }) => {
+    increase();
+    reset();
+});
+// Or import from default export:
+import("./esCounterModule.js").then(dynamicESCounterModule => {
+    dynamicESCounterModule.increase();
+    dynamicESCounterModule.reset();
+});
+```
+
+By returning a promise, apparently, import function can also work with the await keyword:
+
+```js
+// Use dynamic ES module with async/await.
+(async () => {
+
+    // Import from named export:
+    const { increase, reset } = await import("./esCounterModule.js");
+    increase();
+    reset();
+
+    // Or import from default export:
+    const dynamicESCounterModule = await import("./esCounterModule.js");
+    dynamicESCounterModule.increase();
+    dynamicESCounterModule.reset();
+
+})();
+```
+
+---
+SystemJS also provides an import function for dynamic import:
+
+```js
+// Use SystemJS module with promise APIs.
+System.import("./esCounterModule.js").then(dynamicESCounterModule => {
+		dynamicESCounterModule.increase();
+		dynamicESCounterModule.reset();
+});
+```

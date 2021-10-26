@@ -170,6 +170,49 @@ To prevent blocking rendering when a script is processing we can use *async/defe
 	```
 	> Note as of SystemJS 2.0 support for named System.register(name, deps, declare) is no longer supported, as instead code optimization approaches that combine modules like with Rollup's code-splitting workflows are recommended instead.
 
+	Exapmple:
+
+	log.js:
+	```js
+	function log(text) {
+		console.log(text);
+	}
+
+	System.register([], function (_export, _context) {
+		var dep;
+		return {
+			setters: [function (_dep) {
+				dep = _dep;
+			}],
+			execute: function () {
+				_export({ log });
+			}
+		};
+	});
+	```
+
+	greet.js
+	```js
+		System.import('./log.js').then((module) => {
+		module.log('Hello');
+
+		// It is possible to import css and json as well
+		System.import('./styles.css').then(module => console.log(module.default));
+		System.import('./json.json').then(module => console.log(module.default));
+	});
+	```
+
+	Html:
+	```html
+	<script src="node_modules/systemjs/dist/system.min.js"></script>
+
+	<script type="systemjs-module" src="./greet.js"></script>
+	```
+
+	Output:
+
+	<img src="../../assets/systemjs-example-output.png" width="700" />
+
 ## Now
 ES Modules was introduced in 2015 in ES6 and is also known for [import/export syntax](https://javascript.info/import-export).
 

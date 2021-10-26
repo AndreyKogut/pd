@@ -173,7 +173,7 @@ To prevent blocking rendering when a script is processing we can use *async/defe
 ## Now
 ES Modules was introduced in 2015 in ES6 and is also known for [import/export syntax](https://javascript.info/import-export).
 
-Expample:
+Example:
 
 log.js
 ```js

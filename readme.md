@@ -6,6 +6,10 @@
 
 * Constructor overloading
 
+## RxJs
+
+* [Scheduler](./src/rxjs/schedulers/readme.md)
+
 ## Patterns
 
 * Singletone

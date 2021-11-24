@@ -1,0 +1,23 @@
+<div
+	*ngIf="wizardStepServices"
+	class="wizard">
+	<div class="wizard__active-item">
+		<ng-content></ng-content>
+	</div>
+
+	<div
+		*ngIf="activeStep != undefined"
+		class="wizard__controls">
+		<div
+			(click)="prevStep()"
+			*ngIf="activeStep > 0">
+			Prev
+		</div>
+
+		<div
+			(click)="nextStep()"
+			*ngIf="(wizardStepServices.length - 1) > activeStep">
+			Next
+		</div>
+	</div>
+</div>

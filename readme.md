@@ -1,6 +1,7 @@
 ## Cookbook
 * [App config boilerplate](./src/app-config-boilerplate/README.md)
 * [Modules](./src/modules/modules.md)
+* [Angular](./src/angular/README.md)
 
 ## Core
 
@@ -12,7 +13,7 @@
 
 ## Patterns
 
-* Singletone
+* Singleton
 * Builder
 * Decorator
 * Observer

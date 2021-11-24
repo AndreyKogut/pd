@@ -1,0 +1,16 @@
+.app {
+	&__routes {
+		font-size: 18px;
+		font-weight: 800;
+	}
+
+	&__route {
+		padding: 5px 10px;
+		color: black;
+		text-decoration: none;
+
+		&_active {
+			color: red;
+		}
+	}
+}
